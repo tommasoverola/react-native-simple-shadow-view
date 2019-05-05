@@ -37,24 +37,23 @@ class ShadowView extends Component {
         borderWidth,
         borderColor,
       } = flattenedStyle;
-      const {width, height} = shadowOffset || {}
-
+      const { width: shadowOffsetX, height: shadowOffsetY} = shadowOffset || {}
       return (
         <RNTShadowView
-              {...this.props}
-              style={flattenedStyle}
-              borderWidth={borderWidth}
-              borderColor={borderColor !== undefined ? borderColor : 'black'}
-              backgroundColor={backgroundColor}
-              borderRadius={borderRadius}
-              shadowColor={shadowColor !== undefined ? shadowColor : 'black'}
-              shadowOffsetX={width}
-              shadowOffsetY={height}
-              shadowOpacity={(shadowOpacity !== undefined ? shadowOpacity : 0)}
-              shadowRadius={(shadowRadius !== undefined ? shadowRadius : 2.8)}
-            >
-              {this.props.children}
-            </RNTShadowView>
+          {...this.props}
+          style={[flattenedStyle]}
+          borderWidth={borderWidth}
+          borderColor={borderColor !== undefined ? borderColor : 'black'}
+          backgroundColor={backgroundColor}
+          borderRadius={borderRadius}
+          shadowColor={shadowColor !== undefined ? shadowColor : 'black'}
+          shadowOffsetX={shadowOffsetX}
+          shadowOffsetY={shadowOffsetY}
+          shadowOpacity={(shadowOpacity !== undefined ? shadowOpacity : 0)}
+          shadowRadius={(shadowRadius !== undefined ? shadowRadius : 2.8)}
+      >
+      {this.props.children}
+    </RNTShadowView>
     );
     }
 }

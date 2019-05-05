@@ -1,7 +1,7 @@
 {
   "name": "react-native-simple-shadow-view",
-  "version": "1.0.0",
-  "description": "Shadow view for react native",
+  "version": "1.5.0",
+  "description": "a Shadow view for react native",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

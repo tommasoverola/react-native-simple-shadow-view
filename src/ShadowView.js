@@ -18,7 +18,7 @@ class ShadowView extends Component {
       let flattenedStyle = {};
       if (Array.isArray(style)) {
         style.map((item) => {
-          Object.keys(item).map(key => flattenedStyle[key] = item[key]);
+          item && Object.keys(item) && Object.keys(item).map(key => flattenedStyle[key] = item[key]);
         })
       }
       else {

@@ -1,4 +1,4 @@
-package com.shadow;
+package com.como.RNTShadowView;
 
 import android.graphics.Color;
 import android.support.annotation.Nullable;

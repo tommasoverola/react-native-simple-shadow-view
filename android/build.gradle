@@ -12,7 +12,7 @@ android {
         minSdkVersion 16
         targetSdkVersion project.hasProperty('targetSdkVersion') ? project.targetSdkVersion : DEFAULT_TARGET_SDK_VERSION
 
-        renderscriptTargetApi 18
+        renderscriptTargetApi project.hasProperty('targetSdkVersion') ? project.targetSdkVersion : DEFAULT_TARGET_SDK_VERSION
         renderscriptSupportModeEnabled true
     }
 }

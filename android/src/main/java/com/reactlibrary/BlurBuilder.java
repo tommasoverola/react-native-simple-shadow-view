@@ -1,4 +1,4 @@
-package com.shadow;
+package com.como.RNTShadowView;
 
 import android.content.Context;
 import android.content.res.Resources;

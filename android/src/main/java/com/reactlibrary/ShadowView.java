@@ -1,4 +1,4 @@
-package com.como.RNTShadowView;
+package com.shadow;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -44,7 +44,6 @@ public class ShadowView extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-
         invalidate();
     }
 
@@ -100,7 +99,7 @@ public class ShadowView extends ViewGroup {
     public void setShadowRadius(double shadowRadius) {
         shadowRadius = Math.max(0.2, shadowRadius);
         this.shadowRadius = (int)shadowRadius;
-        this.margin = (int)(this.shadowRadius * 8);
+        this.margin = (int)(this.shadowRadius * 6.2);
         invalidate();
     }
 
@@ -132,11 +131,11 @@ public class ShadowView extends ViewGroup {
         if (getWidth() == 0) {
             return;
         }
-        Bitmap shadowBitmap = createShadowForView();
 
+        Bitmap shadowBitmap = createShadowForView();
         Rect imageRect = new Rect(0, 0, shadowBitmap.getWidth(), shadowBitmap.getHeight());
         Rect targetRect = new Rect((-margin) + shadowOffsetX, (-margin)+ shadowOffsetY, getWidth() + (margin) + shadowOffsetX, getHeight() + (margin) + shadowOffsetY);
-        canvas.drawBitmap(createShadowForView(), imageRect, targetRect, viewPaint);
+        canvas.drawBitmap(shadowBitmap, imageRect, targetRect, viewPaint);
 
 
         Object contentRect = new RectF(0, 0, getWidth(), getHeight());
@@ -156,7 +155,7 @@ public class ShadowView extends ViewGroup {
     }
 
     public Bitmap createShadowForView() {
-        Bitmap bitmap = Bitmap.createBitmap(getWidth() + margin * 2, getHeight()+ margin * 2, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(getWidth() + margin * 2, getHeight()+ margin * 2, Bitmap.Config.ARGB_4444);
         Canvas canvas = new Canvas(bitmap);
         Paint shadowPaint = new Paint();
         shadowPaint.setAntiAlias(true);
@@ -169,7 +168,7 @@ public class ShadowView extends ViewGroup {
 //        borderShadowPaint.setStyle(Paint.Style.STROKE);
 //        borderShadowPaint.setStrokeWidth((int)borderWidth);
 //        canvas.drawRoundRect( new RectF(margin, margin, bitmap.getWidth() - margin, bitmap.getHeight() - margin), borderRadius, borderRadius, borderShadowPaint);
-
-        return BlurBuilder.blur(getContext(), bitmap, shadowRadius);
+        bitmap = BlurBuilder.blur(getContext(), bitmap, shadowRadius);
+        return bitmap;
     }
 }

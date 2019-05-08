@@ -37,6 +37,12 @@ class ShadowView extends Component {
         borderWidth,
         borderColor,
       } = flattenedStyle;
+      if (!shadowRadius || shadowOpacity === 0) {
+        return (<View
+          {...this.props}
+        />)
+      }
+
       const { width: shadowOffsetX, height: shadowOffsetY} = shadowOffset || {}
       return (
         <RNTShadowView

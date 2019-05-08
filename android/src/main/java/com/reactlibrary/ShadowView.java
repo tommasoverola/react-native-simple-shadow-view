@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 public class ShadowView extends ViewGroup {
     int shadowOffsetX = 0;
-    int shadowOffsetY = (int)(-4 * Resources.getSystem().getDisplayMetrics().density);
+    int shadowOffsetY = (int)(-2 * Resources.getSystem().getDisplayMetrics().density);
     int shadowRadius = 0;
     int borderRadius = 0;
     int shadowColor;
@@ -26,6 +26,8 @@ public class ShadowView extends ViewGroup {
 
     Paint viewPaint = new Paint();
     Paint borderPaint = new Paint();
+
+    Bitmap shadowBitmap = null;
 
     public ShadowView(Context context) {
         super(context);
@@ -44,7 +46,10 @@ public class ShadowView extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        invalidate();
+        if (changed) {
+            shadowBitmap = createShadowForView();
+            invalidate();
+        }
     }
 
     @Override
@@ -132,7 +137,6 @@ public class ShadowView extends ViewGroup {
             return;
         }
 
-        Bitmap shadowBitmap = createShadowForView();
         Rect imageRect = new Rect(0, 0, shadowBitmap.getWidth(), shadowBitmap.getHeight());
         Rect targetRect = new Rect((-margin) + shadowOffsetX, (-margin)+ shadowOffsetY, getWidth() + (margin) + shadowOffsetX, getHeight() + (margin) + shadowOffsetY);
         canvas.drawBitmap(shadowBitmap, imageRect, targetRect, viewPaint);

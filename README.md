@@ -33,6 +33,11 @@
   	```
       implementation project(':react-native-simple-shadow-view')
   	```
+4. Insert the following lines inside the defaultConfig block in `android/app/build.gradle`:
+  	```
+      renderscriptTargetApi 18
+      renderscriptSupportModeEnabled true
+  	```
 
 
 ## Usage

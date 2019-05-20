@@ -11,7 +11,7 @@ import android.support.v8.renderscript.ScriptIntrinsicBlur;
 public class BlurBuilder {
 
     public static Bitmap blur(Context context, Bitmap image, float blurRadius) {
-        float scale  = (1f / (float)Math.sqrt(blurRadius * Resources.getSystem().getDisplayMetrics().density)) ;
+        float scale  = (1.3f / (float)Math.sqrt(blurRadius * Resources.getSystem().getDisplayMetrics().density)) ;
         blurRadius = blurRadius * 2;
         blurRadius  = Math.max(8, Math.min(25, blurRadius));
         return blur(context, image, blurRadius, scale);

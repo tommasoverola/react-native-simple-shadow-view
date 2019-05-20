@@ -146,16 +146,16 @@ public class ShadowView extends ViewGroup {
         canvas.drawRoundRect((RectF)contentRect, borderRadius, borderRadius, viewPaint);
 
 
-        if (borderWidth > 0) {
-            borderPaint.setStrokeWidth((float)borderWidth);
-            if (Color.alpha(viewPaint.getColor()) < 255) {
-                borderPaint.setShadowLayer(this.shadowRadius, shadowOffsetX, shadowOffsetY, borderShadowColor);
-            }
-            else {
-                borderPaint.clearShadowLayer();
-            }
-            canvas.drawRoundRect((RectF)contentRect, borderRadius, borderRadius, borderPaint);
-        }
+//        if (borderWidth > 0) {
+//            borderPaint.setStrokeWidth((float)borderWidth);
+//            if (Color.alpha(viewPaint.getColor()) < 255) {
+//                borderPaint.setShadowLayer(this.shadowRadius, shadowOffsetX, shadowOffsetY, borderShadowColor);
+//            }
+//            else {
+//                borderPaint.clearShadowLayer();
+//            }
+//            canvas.drawRoundRect((RectF)contentRect, borderRadius, borderRadius, borderPaint);
+//        }
     }
 
     public Bitmap createShadowForView() {

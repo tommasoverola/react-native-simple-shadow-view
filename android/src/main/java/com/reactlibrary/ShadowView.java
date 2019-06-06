@@ -138,41 +138,20 @@ public class ShadowView extends ViewGroup {
         }
 
         Rect imageRect = new Rect(0, 0, shadowBitmap.getWidth(), shadowBitmap.getHeight());
-        Rect targetRect = new Rect((-margin) + shadowOffsetX, (-margin)+ shadowOffsetY, getWidth() + (margin) + shadowOffsetX, getHeight() + (margin) + shadowOffsetY);
+        Rect targetRect = new Rect(shadowOffsetX - margin, shadowOffsetY - margin, getWidth() + margin + shadowOffsetX, getHeight() + margin + shadowOffsetY);
         canvas.drawBitmap(shadowBitmap, imageRect, targetRect, viewPaint);
-
 
         Object contentRect = new RectF(0, 0, getWidth(), getHeight());
         canvas.drawRoundRect((RectF)contentRect, borderRadius, borderRadius, viewPaint);
-
-
-//        if (borderWidth > 0) {
-//            borderPaint.setStrokeWidth((float)borderWidth);
-//            if (Color.alpha(viewPaint.getColor()) < 255) {
-//                borderPaint.setShadowLayer(this.shadowRadius, shadowOffsetX, shadowOffsetY, borderShadowColor);
-//            }
-//            else {
-//                borderPaint.clearShadowLayer();
-//            }
-//            canvas.drawRoundRect((RectF)contentRect, borderRadius, borderRadius, borderPaint);
-//        }
     }
 
     public Bitmap createShadowForView() {
-        Bitmap bitmap = Bitmap.createBitmap(getWidth() + margin * 2, getHeight()+ margin * 2, Bitmap.Config.ARGB_4444);
+        Bitmap bitmap = Bitmap.createBitmap(getWidth() + margin * 2, getHeight()+ margin * 2, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         Paint shadowPaint = new Paint();
         shadowPaint.setAntiAlias(true);
         shadowPaint.setColor(shadowColorToDraw);
         canvas.drawRoundRect( new RectF(margin, margin, bitmap.getWidth() - margin, bitmap.getHeight() - margin), borderRadius, borderRadius, shadowPaint);
-
-//        Paint borderShadowPaint = new Paint();
-//        borderShadowPaint.setAntiAlias(true);
-//        borderShadowPaint.setColor(borderShadowColor);
-//        borderShadowPaint.setStyle(Paint.Style.STROKE);
-//        borderShadowPaint.setStrokeWidth((int)borderWidth);
-//        canvas.drawRoundRect( new RectF(margin, margin, bitmap.getWidth() - margin, bitmap.getHeight() - margin), borderRadius, borderRadius, borderShadowPaint);
-        bitmap = BlurBuilder.blur(getContext(), bitmap, shadowRadius);
-        return bitmap;
+        return BlurBuilder.blur(getContext(), bitmap, shadowRadius);
     }
 }

@@ -22,6 +22,7 @@
   ],
   "author": "Roy Ben-Sasson",
   "license": "MIT",
+  "postinstall": "npx jetify",
   "peerDependencies": {
     "react-native": "0.51.0"
   }
